@@ -8,11 +8,15 @@ import {CSS} from '@dnd-kit/utilities';
 import { AdminCourseSingularType } from "@/app/data/admin/admin-get-course";
 import { cn } from "@/lib/utils";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, ChevronRight, FileText, GripVertical, Trash2 } from "lucide-react";
+import { ChevronDown, ChevronRight, FileText, GripVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { toast } from "sonner";
 import { reorderChapters, reorderLessons } from "../action";
+import { NewChapterModel } from "./NewChapterModel";
+import { NewLessonModel } from "./NewLessonModel";
+import { DeleteLesson } from "./DeleteLesson";
+import { DeleteChapter } from "./DeleteChapter";
 
 
 interface iAppProps {
@@ -279,6 +283,7 @@ export function CourseStructure({ data }: iAppProps) {
                     <CardTitle>
                         Chapters
                     </CardTitle>
+                    <NewChapterModel courseId={data.id} />
                 </CardHeader>
 
                 <CardContent className="space-y-8">
@@ -322,15 +327,15 @@ export function CourseStructure({ data }: iAppProps) {
                                                         </Button>
                                                     </CollapsibleTrigger>
 
-                                                    <p className="cursor-pointer hover:text-primary pl-2">{item.title}</p>
+                                                    <p className="cursor-pointer hover:text-primary pl-2">
+                                                        {item.title}
+                                                    </p>
                                                 </div>
 
-                                                <Button
-                                                    size="icon"
-                                                    variant="outline"
-                                                >
-                                                    <Trash2 className="size-4" />
-                                                </Button>
+                                                <DeleteChapter 
+                                                    chapterId={item.id}
+                                                    courseId={data.id}
+                                                />
                                             </div>
 
                                             <CollapsibleContent>
@@ -365,12 +370,11 @@ export function CourseStructure({ data }: iAppProps) {
                                                                             </Link>
                                                                         </div>
 
-                                                                        <Button
-                                                                            size="icon"
-                                                                            variant="outline"
-                                                                        >
-                                                                            <Trash2 className="size-4" />
-                                                                        </Button>
+                                                                        <DeleteLesson 
+                                                                            chapterId={item.id}
+                                                                            courseId={data.id}
+                                                                            lessonId={lesson.id}
+                                                                        />
                                                                     </div>
                                                                 )}
                                                             </SortableItem>
@@ -378,12 +382,10 @@ export function CourseStructure({ data }: iAppProps) {
                                                     </SortableContext>
 
                                                     <div className="p-2">
-                                                        <Button
-                                                            variant="outline"
-                                                            className="w-full"
-                                                        >
-                                                            Create New Lesson
-                                                        </Button>
+                                                        <NewLessonModel 
+                                                            courseId={data.id} 
+                                                            chapterId={item.id}
+                                                        />
                                                     </div>
                                                 </div>
                                             </CollapsibleContent>

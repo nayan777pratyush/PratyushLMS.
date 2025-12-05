@@ -50,7 +50,7 @@ export function EditCourseForm({ data }: iAppProps) {
           const {data: result, error } = await tryCatch(editCourse(values, data.id));
     
           if(error) {
-            toast.error("An unexpected error occured. Please try again.");
+            toast.error("An unexpected error occurred. Please try again.");
             return;
           }
           if(result.status === "success") {
@@ -149,7 +149,11 @@ export function EditCourseForm({ data }: iAppProps) {
             <FormItem className="w-full">
               <FormLabel>Thumbnail Image</FormLabel>
               <FormControl>
-                <Uploader onChange={field.onChange} value={field.value} />
+                <Uploader 
+                  onChange={field.onChange} 
+                  value={field.value} 
+                  fileTypeAccepted="image"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -48,7 +48,7 @@ export default function CreateCoursePage() {
       const {data: result, error } = await tryCatch(CreateCourse(values));
 
       if(error) {
-        toast.error("An unexpected error occured. Please try again.");
+        toast.error("An unexpected error occurred. Please try again.");
         return;
       }
       if(result.status === "success") {
@@ -173,7 +173,11 @@ export default function CreateCoursePage() {
                   <FormItem className="w-full">
                     <FormLabel>Thumbnail Image</FormLabel>
                     <FormControl>
-                      <Uploader onChange={field.onChange} value={field.value} />
+                      <Uploader 
+                        onChange={field.onChange} 
+                        value={field.value} 
+                        fileTypeAccepted="image"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

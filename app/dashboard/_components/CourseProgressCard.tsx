@@ -21,6 +21,7 @@ export function CourseProgressCard({data}: iAppProps) {
         totalLessons,
         completedLessons,
         progressPercentage
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } = useCourseProgress({courseData: data.Course as any});
 
     return (

@@ -7,7 +7,6 @@ import { useConfetti } from "@/hooks/use-confetti";
 import { ArrowLeft, CheckIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
-import { useState } from "react";
 
 export default function PaymentSuccessful() {
     const { triggerConfetti } = useConfetti();

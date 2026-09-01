@@ -40,7 +40,7 @@ export const config ={
 
 
 // Pass any existing middleware with the optional existingMiddleware prop
-export const middleware = createMiddleware(aj, async (request: NextRequest) => {
+export const proxy = createMiddleware(aj, async (request: NextRequest) => {
 	if(request.nextUrl.pathname.startsWith("/admin")) {
 		return authMiddleware(request);
 	}
